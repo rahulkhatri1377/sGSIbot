@@ -79,8 +79,10 @@ jobs:
        - name: Upload SGSI to SourceForge...
          if: env.upload_SourceForge == 'true'
          run: |
-             cd SGSI-build-tool/output
-             7z a $REPACK_NAME-SGSI-PriiiiyoGSIs.7z
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/output
+             pwd
+             ls "$REPACK_NAME"
+             zip a $REPACK_NAME.zip
              expect -c " 
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
              expect \"Password\"        
@@ -88,7 +90,7 @@ jobs:
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
              set timeout -1
-             send \"put $REPACK_NAME-SGSI-PriiiiyoGSIs.7z\r\"
+             send \"put $REPACK_NAME.zip\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
