@@ -7,11 +7,11 @@ on:
     types: [started]
     
 env:              
-  ROM_URL: 'https://www.priiiyocloud.workers.dev/0://redfin-spb1.210331.013-factory-f3f9db4a/redfin-spb1.210331.013/image-redfin-spb1.210331.013.zip'
+  ROM_URL: 'https://www.priiiyocloud.workers.dev/0://blueline-spb1.210331.013-factory-517d58c9/blueline-spb1.210331.013/image-blueline-spb1.210331.013.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Redfin_Beta_SGSI.zip'
+  REPACK_NAME: 'Blueline_Beta_SGSI.zip'
   VERSION: '12'
   upload _SourceForge: 'false'
   upload_WeTransfer: 'true'
