@@ -14,8 +14,8 @@ env:
   REPACK_NAME: 'SGSI.zip'
   VERSION: '12'
   upload _SourceForge: 'true'
-  upload_WeTransfer: ''
-  upload_action-gh-release: 'true'
+  upload_WeTransfer: 'true'
+  upload_action-gh-release: 'false'
   SETUP: 'true'
   
 jobs:
