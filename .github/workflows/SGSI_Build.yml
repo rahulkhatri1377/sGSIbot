@@ -98,7 +98,7 @@ jobs:
              interact"
 
        - name: Upload SGSI to WeTransfer...
-         if: env.upload_WeTransfer == 'true' 
+         if: env.upload_WeTransfer == 'false' 
          run: |
            cd $GITHUB_WORKSPACE/SGSI-build-tool
            pwd
