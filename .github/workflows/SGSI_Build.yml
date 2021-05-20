@@ -2,9 +2,7 @@
 
 name: SGSI_Build
 
-on:
-  watch:
-    types: [started]
+on: [push]
     
 env:              
   ROM_URL: 'https://www.priiiyocloud.workers.dev/0://blueline-spb1.210331.013-factory-517d58c9/blueline-spb1.210331.013/image-blueline-spb1.210331.013.zip'
