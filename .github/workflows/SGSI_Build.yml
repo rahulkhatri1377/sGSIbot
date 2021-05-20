@@ -11,8 +11,8 @@ env:
   BUILD_TYPE: 'ab'
   REPACK_NAME: 'Blueline_Beta_SGSI.zip'
   VERSION: '12'
-  upload _SourceForge: 'false'
-  upload_WeTransfer: 'true'
+  upload _SourceForge: 'true'
+  upload_WeTransfer: 'false'
   upload_action-gh-release: 'true'
   SETUP: 'true'
   
