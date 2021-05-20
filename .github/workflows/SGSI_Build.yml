@@ -13,8 +13,9 @@ env:
   BUILD_TYPE: 'ab'
   REPACK_NAME: 'SGSI.zip'
   VERSION: '12'
-  upload_WeTransfer: 'true'
-  upload_action-gh-release: 'false'
+  upload _SourceForge: 'true'
+  upload_WeTransfer: ''
+  upload_action-gh-release: 'true'
   SETUP: 'true'
   
 jobs:
@@ -43,7 +44,7 @@ jobs:
          run: |
              git clone https://github.com/xiaoxindada/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/SGSI-build-tool
            
-       - name: Download zip...
+       - name: Download Firmware...
          run: |
             cd $GITHUB_WORKSPACE/SGSI-build-tool
             mkdir ./tmp
@@ -75,6 +76,25 @@ jobs:
              zip -r $REPACK_NAME ./SGSI/*
              ls "$REPACK_NAME"
 
+       - name: Upload SGSI to SourceForge...
+         if: env.upload_SourceForge == 'true'
+         run: |
+             cd SGSI-build-tool/output
+             7z a $REPACK_NAME-SGSI-PriiiiyoGSIs.7z
+             expect -c " 
+             spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
+             expect \"Password\"        
+             send \"${{ secrets.SFPASS }}\r\"
+             expect \"sftp> \"
+             send \"cd ${{ secrets.SFDIR }}\r\"
+             set timeout -1
+             send \"put $REPACK_NAME-SGSI-PriiiiyoGSIs.7z\r\"
+             expect \"Uploading\"
+             expect \"100%\"
+             expect \"sftp>\"
+             send \"bye\r\"
+             interact"
+
        - name: Upload SGSI to WeTransfer...
          if: env.upload_WeTransfer == 'true' 
          run: |
@@ -93,4 +113,4 @@ jobs:
            tag_name: 12
            #body: Use actions auto bulid
          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}           
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}           
