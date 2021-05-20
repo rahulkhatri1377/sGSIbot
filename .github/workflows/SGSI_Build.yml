@@ -7,15 +7,15 @@ on:
     types: [started]
     
 env:              
-  ROM_URL: 'https://dl.google.com/developers/android/sc/images/ota/redfin-ota-spp2.210219.008-3d61e529.zip'
+  ROM_URL: 'https://www.priiiyocloud.workers.dev/0://redfin-spb1.210331.013-factory-f3f9db4a/redfin-spb1.210331.013/image-redfin-spb1.210331.013.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'SGSI.zip'
+  REPACK_NAME: 'Redfin_Beta_SGSI.zip'
   VERSION: '12'
-  upload _SourceForge: 'true'
+  upload _SourceForge: 'false'
   upload_WeTransfer: 'true'
-  upload_action-gh-release: 'false'
+  upload_action-gh-release: 'true'
   SETUP: 'true'
   
 jobs:
