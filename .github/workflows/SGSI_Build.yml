@@ -77,7 +77,7 @@ jobs:
        - name: Upload SGSI to SourceForge...
          if: env.upload_SourceForge == 'true'
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/output
+             cd $GITHUB_WORKSPACE/SGSI-build-tool
              pwd
              ls "$REPACK_NAME"
              zip a $REPACK_NAME.zip
