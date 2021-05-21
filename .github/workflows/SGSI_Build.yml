@@ -79,7 +79,6 @@ jobs:
              cd $GITHUB_WORKSPACE/SGSI-build-tool
              pwd
              ls "$REPACK_NAME"
-             zip a $REPACK_NAME.zip
              expect -c " 
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
              expect \"Password\"        
