@@ -92,7 +92,7 @@ jobs:
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
              set timeout -1
-             send \"put $REPACK_NAME.zip\r\"
+             send \"put $REPACK_NAME\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
