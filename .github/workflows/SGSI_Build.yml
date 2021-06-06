@@ -34,6 +34,7 @@ jobs:
            sudo -E apt-get update
            sudo -E apt-get -y autoremove --purge
            sudo -E apt-get clean
+           sudo apt install expect -y
            df -h
            
        - name: Setting up the SPICES
@@ -77,11 +78,13 @@ jobs:
              ls "$REPACK_NAME"
 
        - name: Upload SGSI to SourceForge
+         continue-on-error: true
          run: |
              cd $GITHUB_WORKSPACE/SGSI-build-tool
              pwd
              ls "$REPACK_NAME"
-             sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
+             expect -c "
+             spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
              expect \"Password\"        
              send \"${{ secrets.SFPASS }}\r\"
              expect \"sftp> \"
@@ -95,6 +98,7 @@ jobs:
              interact"
 
        - name: Upload SGSI to WeTransfer...
+         continue-on-error: true
          if: env.upload_WeTransfer == 'true' 
          run: |
            cd $GITHUB_WORKSPACE/SGSI-build-tool
@@ -112,4 +116,4 @@ jobs:
            tag_name: 12
            #body: Use actions auto bulid
          env:
-            GH_TOKEN: ${{ secrets.GH_TOKEN }}           
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}      
