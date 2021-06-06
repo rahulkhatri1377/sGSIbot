@@ -11,7 +11,7 @@ env:
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Blueline_Beta_RK137SGSI.zip'
+  REPACK_NAME: 'Pixel-3-AB-S-20210606-RK137SGSI.zip'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
