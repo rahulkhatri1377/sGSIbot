@@ -11,7 +11,7 @@ env:
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Blueline_Beta_RK137SGSI.gz'
+  REPACK_NAME: 'Blueline_Beta_RK137SGSI.zip'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
@@ -74,7 +74,7 @@ jobs:
          run: |            
              cd $GITHUB_WORKSPACE/SGSI-build-tool
              pwd
-             gzip -r ./SGSI/* > $REPACK_NAME
+             zip -r $REPACK_NAME ./SGSI/*
              ls "$REPACK_NAME"
 
        - name: Upload SGSI to SourceForge
