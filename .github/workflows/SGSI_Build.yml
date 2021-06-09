@@ -50,6 +50,7 @@ jobs:
             mkdir ./tmp
             axel -n $(nproc) -U "Mozilla/5.0" $ROM_URL -o "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/$ZIP_NAME" || wget -U "Mozilla/5.0" $ROM_URL -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/$ZIP_NAME"
             echo "zip_file: $(ls "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/")"
+            ls
             
        - name: Setup Tool Utils...
          if: env.SETUP == 'true'
@@ -63,6 +64,7 @@ jobs:
          if: env.BUILD_TYPE == 'AB' || env.BUILD_TYPE == 'ab'
          run: |
             sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh --AB $OS_TYPE $ZIP_NAME --fix-bug
+            ls
 
        - name: Building A-only DEVICES SGSI...
          if: env.BUILD_TYPE == 'a-only'
@@ -72,8 +74,9 @@ jobs:
        - name: Repack output file ...
          run: |            
              cd $GITHUB_WORKSPACE/SGSI-build-tool
+             ls
              pwd
-             zip -r $REPACK_NAME ./SGSI/*
+             zip -r $REPACK_NAME . -i ./SGSI/*
              ls "$REPACK_NAME"
 
        - name: Upload SGSI to SourceForge...
