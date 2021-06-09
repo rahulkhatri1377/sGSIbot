@@ -2,16 +2,16 @@
 
 name: SGSI_Build
 
-on: 
-    push:
-    workflow_dispatch:
+on:
+  watch:
+    types: [started]
     
 env:              
-  ROM_URL: 'https://dl.google.com/developers/android/sc/images/factory/blueline-spb2.210513.007-factory-6c2e7c7f.zip'
+  ROM_URL: 'https://dl.google.com/developers/android/sc/images/factory/blueline-spb2.210513.007-factory-6c2e7c7f.zip.210331.013.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Pixel-3-b2-AB-S-20210609-RK137SGSI.zip'
+  REPACK_NAME: 'Pixel3-b2-S-RK137_SGSI.zip'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
@@ -34,7 +34,6 @@ jobs:
            sudo -E apt-get update
            sudo -E apt-get -y autoremove --purge
            sudo -E apt-get clean
-           sudo apt install expect -y
            df -h
            
        - name: Setting up the SPICES
@@ -43,7 +42,7 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/SGSI-build-tool
+             git clone https://github.com/xiaoxindada/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/SGSI-build-tool
            
        - name: Download Firmware...
          run: |
@@ -77,22 +76,21 @@ jobs:
              zip -r $REPACK_NAME ./SGSI/*
              ls "$REPACK_NAME"
 
-       - name: Upload SGSI to SourceForge
-         continue-on-error: true
+       - name: Upload SGSI to SourceForge...
+         if: env.upload_SourceForge == 'true'
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/output
              pwd
              ls "$REPACK_NAME"
-             expect -c "
+             zip a $REPACK_NAME.zip
+             expect -c " 
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
-             expect \"yes/no\"
-             send \"yes\r\"
              expect \"Password\"        
              send \"${{ secrets.SFPASS }}\r\"
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
              set timeout -1
-             send \"put $REPACK_NAME\r\"
+             send \"put $REPACK_NAME.zip\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
@@ -100,7 +98,6 @@ jobs:
              interact"
 
        - name: Upload SGSI to WeTransfer...
-         continue-on-error: true
          if: env.upload_WeTransfer == 'true' 
          run: |
            cd $GITHUB_WORKSPACE/SGSI-build-tool
@@ -118,4 +115,4 @@ jobs:
            tag_name: 12
            #body: Use actions auto bulid
          env:
-            GH_TOKEN: ${{ secrets.GH_TOKEN }}      
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}           
