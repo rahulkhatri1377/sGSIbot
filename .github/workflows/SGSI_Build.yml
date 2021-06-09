@@ -4,7 +4,6 @@ name: SGSI_Build
 
 on:
   push:
-    types: [started]
     
 env:              
   ROM_URL: 'https://dl.google.com/developers/android/sc/images/factory/blueline-spb2.210513.007-factory-6c2e7c7f.zip.210331.013.zip'
