@@ -3,7 +3,7 @@
 name: SGSI_Build
 
 on:
-  watch:
+  push:
     types: [started]
     
 env:              
