@@ -6,7 +6,7 @@ on:
   push:
     
 env:              
-  ROM_URL: 'https://mirror.rahul137.workers.dev/blueline-spb2.210513.007-factory-6c2e7c7f.zip'
+  ROM_URL: 'https://mirror.rahul137.workers.dev/blueline-spb2.210513.007-factory-6c2e7c7f/blueline-spb2.210513.007/image-blueline-spb2.210513.007.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
