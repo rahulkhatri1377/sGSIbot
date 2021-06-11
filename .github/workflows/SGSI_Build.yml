@@ -74,7 +74,8 @@ jobs:
          run: |            
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              pwd
-             xz -cfev9T20 * > $REPACK_NAME
+             xz -cfev9T20 *
+             mv system.ing.xz $REPACK_NAME
              ls "$REPACK_NAME"
 
        - name: Upload SGSI to SourceForge
