@@ -11,7 +11,7 @@ env:
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Pixel3-b2-S-20210610-RK137SGSI.zip'
+  REPACK_NAME: 'Pixel3-b2-S-20210611-RK137SGSI.xz'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
@@ -72,15 +72,15 @@ jobs:
 
        - name: Repack output file ...
          run: |            
-             cd $GITHUB_WORKSPACE/SGSI-build-tool
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              pwd
-             zip -r $REPACK_NAME ./SGSI/*
+             xz -c * > $REPACK_NAME
              ls "$REPACK_NAME"
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              pwd
              ls "$REPACK_NAME"
              expect -c "
