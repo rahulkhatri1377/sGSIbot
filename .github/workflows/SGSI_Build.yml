@@ -74,7 +74,7 @@ jobs:
          run: |            
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              pwd
-             xz -fev9T20 *
+             xz -fev9T9 *
              mv system.img.xz $REPACK_NAME
              ls "$REPACK_NAME"
 
