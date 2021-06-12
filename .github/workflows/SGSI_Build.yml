@@ -11,7 +11,7 @@ env:
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Pixel3-b2-S-c-RK137SGSI.xz'
+  REPACK_NAME: 'Pixel3-b2-S-c-RK137SGSI.img.xz'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
