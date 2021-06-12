@@ -109,7 +109,7 @@ jobs:
          continue-on-error: true
          if: env.upload_WeTransfer == 'true' 
          run: |
-           cd $GITHUB_WORKSPACE/SGSI-build-tool
+           cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
            pwd
            ls "$REPACK_NAME"
            curl -sL https://git.io/file-transfer | sh
@@ -119,8 +119,8 @@ jobs:
          if: env.upload_action-gh-release == 'true'
          uses: softprops/action-gh-release@v1
          with:
-           files: ${{ github.workspace }}/SGSI-build-tool/${{ env.REPACK_NAME }}
-           name: xiaoxinSGSI-${{ env.OS_TYPE }}-${{ env.BUILD_TYPE }}-Android${{ env.VERSION }}-unpack
+           files: ${{ github.workspace }}/SGSI-build-tool/SGSI/final${{ env.REPACK_NAME }}
+           name: RK137SGSI-${{ env.OS_TYPE }}-${{ env.BUILD_TYPE }}-Android${{ env.VERSION }}-unpack
            tag_name: 12
            #body: Use actions auto bulid
          env:
