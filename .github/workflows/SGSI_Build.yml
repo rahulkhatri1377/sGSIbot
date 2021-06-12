@@ -72,15 +72,21 @@ jobs:
 
        - name: Repack output file ...
          run: |            
+             sudo chmod -R 777 $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
-             pwd
+             ls
+             mkdir -p final
+             sudo chmod -R 777 system.img
+             mv system.img final
+             cd final
+             ls
              xz -cfev9 * > $REPACK_NAME
              ls "$REPACK_NAME"
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
              pwd
              ls "$REPACK_NAME"
              expect -c "
