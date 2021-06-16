@@ -7,12 +7,12 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://mirror.rahul137.workers.dev/blueline-spb2.210513.007-factory-6c2e7c7f/blueline-spb2.210513.007/image-blueline-spb2.210513.007.zip'
+  ROM_URL: 'https://android.googleapis.com/packages/ota-api/package/253473aad0b3db4a031a35908a969564e7a32ecf.zip'
   ZIP_NAME: 'update.zip'
-  OS_TYPE: 'Pixel'
+  OS_TYPE: 'Generic'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Pixel3-b2-S-c-RK137SGSI.img.xz'
-  VERSION: '12'
+  REPACK_NAME: 'VOS-4.0-RK137SGSI.img.xz'
+  VERSION: '11'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
   upload_action-gh-release: 'false'
