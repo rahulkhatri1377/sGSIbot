@@ -7,11 +7,11 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://mirror.rahul137.workers.dev/blueline-spb3.210618.013-factory-4f875aa4/blueline-spb3.210618.013/image-blueline-spb3.210618.013.zip'
+  ROM_URL: 'https://mirror.rahul137.workers.dev/redfin-spb3.210618.016-factory-f4abfb53/redfin-spb3.210618.016/image-redfin-spb3.210618.016.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Generic'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Pixel3-S-b3-RK137SGSI.img.xz'
+  REPACK_NAME: 'Pixel3-S-b3.1-RK137SGSI.img.xz'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
