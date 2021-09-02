@@ -7,11 +7,11 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://mirror.rahul137.workers.dev/redfin-spb3.210618.016-factory-f4abfb53/redfin-spb3.210618.016/image-redfin-spb3.210618.016.zip'
+  ROM_URL: 'http://bigota.d.miui.com/21.8.27/miui_VENUS_21.8.27_4c4e6f2923_12.0.zip'
   ZIP_NAME: 'update.zip'
-  OS_TYPE: 'Generic'
+  OS_TYPE: 'miui'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Pixel3-S-b3.1-RK137SGSI.img.xz'
+  REPACK_NAME: 'MIUI-S-RK137SGSI.img'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
@@ -63,12 +63,12 @@ jobs:
        - name: Building AB DEVICES SGSI...
          if: env.BUILD_TYPE == 'AB' || env.BUILD_TYPE == 'ab'
          run: |
-            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh --AB $OS_TYPE $ZIP_NAME --fix-bug
+            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh AB $OS_TYPE $ZIP_NAME --fix-bug
 
        - name: Building A-only DEVICES SGSI...
          if: env.BUILD_TYPE == 'a-only'
          run: |
-            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh --a-only $OS_TYPE $ZIP_NAME --fix-bug     
+            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh a $OS_TYPE $ZIP_NAME --fix-bug     
 
        - name: Repack output file ...
          run: |            
@@ -80,8 +80,8 @@ jobs:
              mv system.img final
              cd final
              ls
-             xz -cfev9 * > $REPACK_NAME
-             ls "$REPACK_NAME"
+             xz -cfev9 * > $REPACK_NAME.xz
+             ls
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
@@ -98,7 +98,7 @@ jobs:
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
              set timeout -1
-             send \"put $REPACK_NAME\r\"
+             send \"put *.xz\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
