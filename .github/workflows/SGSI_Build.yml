@@ -7,7 +7,7 @@ on:
 env:              
   ROM_URL: 'http://bigota.d.miui.com/21.8.27/miui_VENUS_21.8.27_4c4e6f2923_12.0.zip'
   ZIP_NAME: 'update.zip'
-  OS_TYPE: 'miui'
+  OS_TYPE: 'Generic'
   BUILD_TYPE: 'ab'
   REPACK_NAME: 'MIUI-RK137SGSI.img'
   VERSION: '12'
