@@ -5,12 +5,12 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://download.meizu.com/Firmware/Flyme/meizu17_Pro/9.21.9.1/cn_daily/20210901090530/eab72b37/update.zip'
+  ROM_URL: 'http://bigota.d.miui.com/21.8.27/miui_VENUS_21.8.27_4c4e6f2923_12.0.zip'
   ZIP_NAME: 'update.zip'
-  OS_TYPE: 'flyme'
+  OS_TYPE: 'miui'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Flyme-RK137SGSI.img'
-  VERSION: '11'
+  REPACK_NAME: 'MIUI-RK137SGSI.img'
+  VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
   upload_action-gh-release: 'false'
@@ -41,7 +41,7 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 11 $GITHUB_WORKSPACE/SGSI-build-tool
+             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/SGSI-build-tool
            
        - name: Download Firmware...
          run: |
