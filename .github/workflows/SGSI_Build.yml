@@ -91,9 +91,9 @@ jobs:
              xz -cfev9 * > $REPACK_NAME.xz
              ls
 
-       - name: Upload SGSI to SourceForge
-         continue-on-error: true
-         run: |
+      - name: Upload SGSI to SourceForge
+        continue-on-error: true
+        run: |
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
              pwd
              ls "$REPACK_NAME"
