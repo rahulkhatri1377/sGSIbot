@@ -4,12 +4,12 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      URL:
+      ROM_URL:
         description: 'ROM_URL'
         required: true
         default: 'https://download.meizu.com/Firmware/Flyme/meizu17_Pro/9.21.9.1/cn_daily/20210901090530/eab72b37/update.zip'
-      ZIP_NAM:
-        description: 'ZIP_NAM'
+      ZIP_NAME:
+        description: 'ZIP_NAME'
         required: true
         default: 'update.zip'
       OS_TYPE:
@@ -24,9 +24,10 @@ on:
         description: 'REPACK_NAME'
         required: true
         default: 'FlymeOS_M17_Pro_SGSI.zip'
+
 env:
-  ROM_URL: ${{ github.event.inputs.URL }}
-  ZIP_NAME: ${{ github.event.inputs.ZIP_NAM }}
+  URL: ${{ github.event.inputs.ROM_URL }}
+  ZIP: ${{ github.event.inputs.ZIP_NAME }}
 
 jobs:
   build:
@@ -59,7 +60,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/Tool-SGSI-build
           mkdir ./tmp
-          aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o ${ZIP_NAME} ${ROM_URL} || wget -U "Mozilla/5.0" ${ROM_URL} -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/${ZIP_NAME}"
+          aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o $ZIP $URL || wget -U "Mozilla/5.0" ${URL} -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/${ZIP}"
           echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/")"
 
       - name: Configuration tool environment...
