@@ -78,8 +78,8 @@ jobs:
           ${{ github.event.inputs.OS_TYPE }}
           y
 
-       - name: Repack output file ...
-         run: |            
+      - name: Repack output file ...
+        run: |            
              sudo chmod -R 777 $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              ls
