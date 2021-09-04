@@ -9,7 +9,7 @@ env:
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Generic'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'MIUI-RK137SGSI.img'
+  REPACK_NAME: 'MIUI-S-Beta-RK137SGSI'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
@@ -79,14 +79,13 @@ jobs:
              mv system.img final
              cd final
              ls
-             xz -cfev9 * > $REPACK_NAME.xz
-             sudo rm -rf system.img ; cd .. ; mv build-info.txt final ; ls final
+             xz -cfev9 * > $REPACK_NAME.img.xz
+             mv *xz ./../ ; cd .. ; ls
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
-             pwd
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
@@ -96,6 +95,10 @@ jobs:
              send \"${{ secrets.SFPASS }}\r\"
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
+             set timeout -1
+             send \"mkdir $REPACK_NAME\r\"
+             expect \"sftp> \"
+             send \"cd $REPACK_NAME\r\"
              set timeout -1
              send \"put *\r\"
              expect \"Uploading\"
