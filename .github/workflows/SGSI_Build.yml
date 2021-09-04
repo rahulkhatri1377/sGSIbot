@@ -80,14 +80,14 @@ jobs:
              cd final
              ls
              xz -cfev9 * > $REPACK_NAME.xz
-             ls
+             sudo rm -rf system.img ; cd .. ; mv build-info.txt final ; ls final
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
              pwd
-             ls "$REPACK_NAME"
+             ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
              expect \"yes/no\"
@@ -97,7 +97,7 @@ jobs:
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
              set timeout -1
-             send \"put *.xz\r\"
+             send \"put *\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
