@@ -26,7 +26,7 @@ jobs:
                  
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo bash XiaoxindadaSGSIs/url2sgsi.sh $ROM_URL Generic:Miui
+            sudo bash XiaoxindadaSGSIs/url2sgsi.sh $ROM_URL
 
        - name: Repack output file ...
          run: |            
