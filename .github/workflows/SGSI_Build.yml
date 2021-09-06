@@ -42,15 +42,7 @@ jobs:
        - name: Cloning...
          run: |
              git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/SGSI-build-tool
-           
-       - name: Download Firmware...
-         run: |
-            cd $GITHUB_WORKSPACE/SGSI-build-tool
-            mkdir ./tmp
-            aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o $ZIP_NAME $ROM_URL || wget -U "Mozilla/5.0" $ROM_URL -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/$ZIP_NAME"
-            echo "zip_file: $(ls "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/")"
-            ls
-            
+                 
        - name: Setup Tool Utils...
          if: env.SETUP == 'true'
          run: |
@@ -62,30 +54,18 @@ jobs:
        - name: Building AB DEVICES SGSI...
          if: env.BUILD_TYPE == 'AB' || env.BUILD_TYPE == 'ab'
          run: |
-            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh --AB $OS_TYPE $ZIP_NAME --fix-bug
-
-       - name: Building A-only DEVICES SGSI...
-         if: env.BUILD_TYPE == 'a-only'
-         run: |
-            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh a $OS_TYPE $ZIP_NAME --fix-bug     
+            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/url2sgsi.sh $ROM_URL Generic:Miui
 
        - name: Repack output file ...
          run: |            
              sudo chmod -R 777 $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              ls
-             mkdir -p final
-             sudo chmod -R 777 system.img
-             mv system.img final
-             cd final
-             ls
-             xz -cfev9 * > $REPACK_NAME.img.xz
-             mv *xz ./../ ; cd .. ; ls
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
              ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
