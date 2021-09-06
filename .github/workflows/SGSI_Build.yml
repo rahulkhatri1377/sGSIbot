@@ -6,7 +6,6 @@ on:
     
 env:              
   ROM_URL: 'http://bigota.d.miui.com/21.8.27/miui_VENUS_21.8.27_4c4e6f2923_12.0.zip'
-  upload _SourceForge: 'true'
   SETUP: 'true'
   
 jobs:
