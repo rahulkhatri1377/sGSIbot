@@ -31,26 +31,26 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/SGSI-build-tool
+             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 XiaoxindadaSGSIs
                  
        - name: Setup Tool Utils...
          if: env.SETUP == 'true'
          run: |
-            sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
-            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
+            sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
+            sudo bash XiaoxindadaSGSIs/setup.sh
             sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
             java -version
             
        - name: Building AB DEVICES SGSI...
          if: env.BUILD_TYPE == 'AB' || env.BUILD_TYPE == 'ab'
          run: |
-            sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/url2sgsi.sh $ROM_URL Generic:Miui
+            sudo bash XiaoxindadaSGSIs/url2sgsi.sh $ROM_URL Generic:Miui
 
        - name: Repack output file ...
          run: |            
-             sudo chmod -R 777 $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
-             ls ; cd .. ; ls tmp
+             cd XiaoxindadaSGSIs ; ls tmp
+             sudo chmod -R 777 SGSI ; cd SGSI
+             ls
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
@@ -76,24 +76,3 @@ jobs:
              expect \"sftp>\"
              send \"bye\r\"
              interact"
-
-       - name: Upload SGSI to WeTransfer...
-         continue-on-error: true
-         if: env.upload_WeTransfer == 'true' 
-         run: |
-           cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
-           pwd
-           ls "$REPACK_NAME"
-           curl -sL https://git.io/file-transfer | sh
-           ./transfer wet ./$REPACK_NAME
-
-       - name: Upload SGSI to action-gh-release...
-         if: env.upload_action-gh-release == 'true'
-         uses: softprops/action-gh-release@v1
-         with:
-           files: ${{ github.workspace }}/SGSI-build-tool/SGSI/final${{ env.REPACK_NAME }}
-           name: RK137SGSI-${{ env.OS_TYPE }}-${{ env.BUILD_TYPE }}-Android${{ env.VERSION }}-unpack
-           tag_name: 12
-           #body: Use actions auto bulid
-         env:
-            GH_TOKEN: ${{ secrets.GH_TOKEN }}      
