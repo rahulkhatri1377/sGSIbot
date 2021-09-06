@@ -23,20 +23,10 @@ jobs:
     steps:
        - name: Checkout
          uses: actions/checkout@main
-       
-       - name: Clean Up
-         run: |       
-           docker rmi `docker images -q`
-           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-           sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
-           sudo -E apt-get update
-           sudo -E apt-get -y autoremove --purge
-           sudo -E apt-get clean
-           sudo apt install expect -y
            
        - name: Setting up the SPICES
          run: |
-            sudo apt-get install -y git wget unzip curl
+            sudo apt-get install -y git unzip curl aria2
             df -h
 
        - name: Cloning...
@@ -60,7 +50,7 @@ jobs:
          run: |            
              sudo chmod -R 777 $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
-             ls
+             ls ; cd .. ; ls tmp
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
