@@ -25,7 +25,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo bash XiaoxindadaSGSIs/url2sgsi.sh $ROM_URL Generic:MIUI-S
+            sudo bash XiaoxindadaSGSIs/url2SGSI.sh $ROM_URL Generic:MIUI-S
 
        - name: Repack output file ...
          run: |            
