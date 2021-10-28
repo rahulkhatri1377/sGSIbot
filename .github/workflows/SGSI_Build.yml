@@ -7,9 +7,9 @@ on:
 env:              
   ROM_URL: 'https://mirrorbot-69.rehanalt501.workers.dev//PixelExperience_aqua-12.0-20211026-1355-ALPHA.zip'
   ZIP_NAME: 'update.zip'
-  OS_TYPE: 'Generic'
+  OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'PixelExperience-S-Aplpha-RK137SGSI'
+  REPACK_NAME: 'PixelExp-S-Aplpha-RK137SGSI'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
