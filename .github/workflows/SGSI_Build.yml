@@ -71,13 +71,9 @@ jobs:
              sudo chmod -R 777 $GITHUB_WORKSPACE/SGSI-build-tool/output
              cd $GITHUB_WORKSPACE/SGSI-build-tool/output
              ls
-             mkdir -p final
              sudo chmod -R 777 system.img
-             mv system.img final
-             cd final
-             ls
-             xz -cfev9 * > $REPACK_NAME.img.xz
-             mv *xz ./../ ; cd .. ; ls ; rm -rf *img
+             gzip -cfStv9 *img > $REPACK_NAME.img.gz
+             rm -rf system.img ; ls
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
