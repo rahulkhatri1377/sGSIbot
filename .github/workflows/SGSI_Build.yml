@@ -5,7 +5,7 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dl.google.com/dl/android/aosp/bramble-sp1a.211105.004-factory-bb68fd75.zip'
+  ROM_URL: 'https://dl.google.com/dl/android/aosp/redfin-sp1a.211105.004-factory-749e8f9f.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
@@ -47,7 +47,7 @@ jobs:
             cd $GITHUB_WORKSPACE/SGSI-build-tool
             mkdir ./tmp
             aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o $ZIP_NAME $ROM_URL || wget -U "Mozilla/5.0" $ROM_URL -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/$ZIP_NAME"
-            cd tmp ; unzip *zip ; cd * ; mv image* ./../ ; cd .. ; mv *zip update.zip
+            cd tmp ; unzip *zip ; cd r* ; mv image* ./../ ; cd .. ; mv *zip update.zip
             
        - name: Setup Tool Utils...
          run: |
