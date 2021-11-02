@@ -24,11 +24,6 @@ on:
         description: 'REPACK_NAME'
         required: true
         default: 'Ancient-5.6-11-RK137SGSI'
-
-env:
-  URL: ${{ github.event.inputs.ROM_URL }}
-  ZIP: ${{ github.event.inputs.ZIP_NAME }}
-
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -39,7 +34,7 @@ jobs:
 
       - name: Get variable configuration...
         run: |
-          echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV ; echo "$URL"
+          echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
 
       - name: Clean up the environment‌‌...
         run: |
@@ -60,7 +55,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/Tool-SGSI-build
           mkdir ./tmp
-          aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o $ZIP $URL || wget -U "Mozilla/5.0" ${URL} -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/${ZIP}"
+          wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/")"
 
       - name: Configuration tool environment...
@@ -71,7 +66,6 @@ jobs:
           java -version
 
       - name: Make AB type GSI‌‌...
-        if: ${{ github.event.inputs.SGSI_TYPE }} == 'ab' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
           sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh AB << EOF
           ${{ github.event.inputs.ZIP_NAME }}
@@ -106,7 +100,7 @@ jobs:
              expect \"sftp> \"
              send \"cd $REPACK_NAME\r\"
              set timeout -1
-             send \"put *.gz\r\"
+             send \"put *\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
