@@ -5,11 +5,11 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://netix.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-S-Alpha-Society-v6.0-RMX1921-Iron-20211027-1257-GApps.zip'
+  ROM_URL: 'https://dl.google.com/dl/android/aosp/bramble-sp1a.211105.004-factory-bb68fd75.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Pixel'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Ancient-6-S-P-RK137SGSI'
+  REPACK_NAME: 'Pixel-5-S-RK137SGSI'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
@@ -47,7 +47,7 @@ jobs:
             cd $GITHUB_WORKSPACE/SGSI-build-tool
             mkdir ./tmp
             aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o $ZIP_NAME $ROM_URL || wget -U "Mozilla/5.0" $ROM_URL -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/$ZIP_NAME"
-            echo "zip_file: $(ls "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/")"
+            cd tmp ; unzip *zip ; cd * ; mv image* ./../ ; cd .. ; mv *zip update.zip
             
        - name: Setup Tool Utils...
          run: |
