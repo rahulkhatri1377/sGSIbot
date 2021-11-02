@@ -39,7 +39,7 @@ jobs:
 
       - name: Get variable configuration...
         run: |
-          echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
+          echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV ; echo "$URL"
 
       - name: Clean up the environment‌‌...
         run: |
