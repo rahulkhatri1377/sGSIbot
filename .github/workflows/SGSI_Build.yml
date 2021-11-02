@@ -3,29 +3,13 @@ name: SGSI_Build
 on:
   push:
   workflow_dispatch:
-    inputs:
-      ROM_URL:
-        description: 'ROM_URL'
-        required: true
-        default: 'https://iweb.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-R-Society-v5.6-RMX1921-Iron-20211021-0952-Vanilla.zip'
-      ZIP_NAME:
-        description: 'ZIP_NAME'
-        required: true
-        default: 'update.zip'
-      OS_TYPE:
-        description: 'OS_TYPE'
-        required: true
-        default: 'Generic'
-      SGSI_TYPE:
-        description: 'SGSI_TYPE(AB, A, or BOTH)'
-        required: true
-        default: 'ab'
-      REPACK_NAME:
-        description: 'REPACK_NAME'
-        required: true
-        default: 'Ancient-5.6-11-RK137SGSI'
+
 env:              
-  REPACK_NAME: 'Ancient-5.6-11-RK137SGSI'
+  ROM_URL: 'https://iweb.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-R-Society-v5.6-RMX1921-Iron-20211021-0952-Vanilla.zip'
+  ZIP_NAME: 'update.zip'
+  OS_TYPE: 'Generic'
+  BUILD_TYPE: 'ab'
+  REPACK_NAME: 'Ancient-6-S-P-RK137SGSI'
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -51,29 +35,29 @@ jobs:
 
       - name: Get the SGSI tool‌‌...
         run: |
-          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 $GITHUB_WORKSPACE/Tool-SGSI-build
+          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 $GITHUB_WORKSPACE/SGSI-build-tool
           
-      - name: Download ROM‌‌...
+      - name: Download Firmware...
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build
+          cd $GITHUB_WORKSPACE/SGSI-build-tool
           mkdir ./tmp
-          wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}"
-          echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/")"
+          aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o $ZIP_NAME $ROM_URL || wget -U "Mozilla/5.0" $ROM_URL -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/$ZIP_NAME"
+          echo "zip_file: $(ls "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/")"
 
       - name: Configuration tool environment...
         run: |
-          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
+          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
+          sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
           sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
           java -version
 
       - name: Make AB type GSI‌‌...
         run: |
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh AB << EOF
-          ${{ github.event.inputs.ZIP_NAME }}
+          sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/make.sh AB << EOF
+          $ZIP_NAME
           y
           y
-          ${{ github.event.inputs.OS_TYPE }}
+          $BUILD_TYPE
           y
 
       - name: Repack output file ...
