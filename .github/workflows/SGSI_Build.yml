@@ -9,7 +9,7 @@ env:
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Generic'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Ancient-6-S-P-RK137SGSI'
+  REPACK_NAME: 'Ancient-5.6-11-RK137SGSI'
 jobs:
   build:
     runs-on: ubuntu-20.04
