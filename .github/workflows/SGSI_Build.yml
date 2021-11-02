@@ -24,6 +24,8 @@ on:
         description: 'REPACK_NAME'
         required: true
         default: 'Ancient-5.6-11-RK137SGSI'
+env:
+REPACK_NAME: ${{ github.event.inputs.REPACK_NAME }}
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -34,7 +36,7 @@ jobs:
 
       - name: Get variable configuration...
         run: |
-          echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
+          echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV ; echo "$REPACK_NAME"
 
       - name: Clean up the environment‌‌...
         run: |
@@ -96,7 +98,7 @@ jobs:
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
              set timeout -1
-             send \"mkdir $$REPACK_NAME\r\"
+             send \"mkdir $REPACK_NAME\r\"
              expect \"sftp> \"
              send \"cd $REPACK_NAME\r\"
              set timeout -1
