@@ -47,7 +47,7 @@ jobs:
             cd $GITHUB_WORKSPACE/SGSI-build-tool
             mkdir ./tmp
             aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" -o $ZIP_NAME $ROM_URL || wget -U "Mozilla/5.0" $ROM_URL -O "$GITHUB_WORKSPACE/SGSI-build-tool/tmp/$ZIP_NAME"
-            cd tmp ; unzip *zip ; cd r* ; mv image* ./../ ; cd .. ; mv *zip update.zip
+            cd tmp ; unzip *zip ; cd r* ; mv image* ./../ ; cd .. ; mv *.zip update.zip
             
        - name: Setup Tool Utils...
          run: |
