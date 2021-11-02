@@ -7,7 +7,7 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://download.meizu.com/Firmware/Flyme/meizu17_Pro/9.21.9.1/cn_daily/20210901090530/eab72b37/update.zip'
+        default: 'https://iweb.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-R-Society-v5.6-RMX1921-Iron-20211021-0952-Vanilla.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
@@ -15,7 +15,7 @@ on:
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'flyme'
+        default: 'Generic'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
@@ -23,7 +23,7 @@ on:
       REPACK_NAME:
         description: 'REPACK_NAME'
         required: true
-        default: 'FlymeOS_M17_Pro_SGSI.zip'
+        default: 'Ancient-5.6-11-RK137SGSI'
 
 env:
   URL: ${{ github.event.inputs.ROM_URL }}
@@ -85,20 +85,14 @@ jobs:
              sudo chmod -R 777 $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
              ls
-             mkdir -p final
              sudo chmod -R 777 system.img
-             mv system.img final
-             cd final
-             ls
-             xz -cfev9 * > $REPACK_NAME.xz
-             ls
+             gzip -cfStv9 *img > $REPACK_NAME.img.gz
 
       - name: Upload SGSI to SourceForge
         continue-on-error: true
         run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
-             pwd
-             ls "$REPACK_NAME"
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
+             ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
              expect \"yes/no\"
@@ -108,7 +102,11 @@ jobs:
              expect \"sftp> \"
              send \"cd ${{ secrets.SFDIR }}\r\"
              set timeout -1
-             send \"put *.xz\r\"
+             send \"mkdir $$REPACK_NAME\r\"
+             expect \"sftp> \"
+             send \"cd $REPACK_NAME\r\"
+             set timeout -1
+             send \"put *.gz\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
