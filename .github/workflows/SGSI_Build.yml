@@ -5,7 +5,7 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'http://bigota.d.miui.com/21.8.27/miui_VENUS_21.8.27_4c4e6f2923_12.0.zip'
+  ROM_URL: 'https://repo.mirrorbot69.workers.dev/0:/DerpFest-12-Official-Shion-RMX1921-20211119.zip'
   
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo bash XiaoxindadaSGSIs/url2SGSI.sh $ROM_URL Generic:MIUI-S
+            sudo bash XiaoxindadaSGSIs/url2SGSI.sh $ROM_URL Generic:DerpFest
 
        - name: Repack output file ...
          run: |            
