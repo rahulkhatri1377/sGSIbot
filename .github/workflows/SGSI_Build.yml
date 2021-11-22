@@ -21,7 +21,7 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 XiaoxindadaSGSIs
+             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b ab XiaoxindadaSGSIs
                
        - name: Building AB DEVICES SGSI...
          run: |
