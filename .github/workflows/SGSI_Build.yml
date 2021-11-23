@@ -5,11 +5,11 @@ on:
   workflow_dispatch:
 
 env:              
-  ROM_URL: 'https://iweb.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-R-Society-v5.6-RMX1921-Iron-20211021-0952-Vanilla.zip'
+  ROM_URL: 'https://mirror.orkunergun.workers.dev/MyOS-R-sakura-generic-20210620.zip'
   ZIP_NAME: 'update.zip'
   OS_TYPE: 'Generic'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Ancient-5.6-11-RK137SGSI'
+  REPACK_NAME: 'MyOS-11-RK137SGSI'
 jobs:
   build:
     runs-on: ubuntu-20.04
