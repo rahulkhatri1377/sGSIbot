@@ -26,7 +26,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:DotOS-6
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:DotOS-6
 
        - name: Repack output file ...
          run: |            
