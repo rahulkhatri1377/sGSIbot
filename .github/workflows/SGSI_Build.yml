@@ -5,8 +5,9 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://repo.mirrorbot69.workers.dev/0:/DerpFest-12-Official-Shion-RMX1921-20211119.zip'
-  
+  ROM_URL: 'https://drive.google.com/uc?id=1yFGzwsAmpmWkbrjbvsqUD_8ticjzUC51&export=download'
+  REPACK_NAME : DotOS-6-20211124-RK137SGSI
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,18 +26,20 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:DerpFest
+            cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:DotOS-6
 
        - name: Repack output file ...
          run: |            
-             cd XiaoxindadaSGSIs ; ls tmp
-             sudo chmod -R 777 SGSI ; cd SGSI
-             ls
+             cd XiaoxindadaSGSIs
+             sudo chmod -R 777 output ; cd output
+             sudo chmod -R 777 system.img
+             gzip -cfStv9 *img > $REPACK_NAME.img.gz
+             sudo rm -rf system.img
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI/final
+             cd $GITHUB_WORKSPACE/SGSI-build-tool/output
              ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
