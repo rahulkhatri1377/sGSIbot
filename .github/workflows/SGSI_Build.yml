@@ -6,7 +6,7 @@ on:
     
 env:              
   ROM_URL: 'https://drive.google.com/uc?id=1yFGzwsAmpmWkbrjbvsqUD_8ticjzUC51&export=download'
-  REPACK_NAME : DotOS-6-20211124-RK137SGSI
+  REPACK_NAME : DotOS-6-RK137SGSI
 
 jobs:
   build:
@@ -35,9 +35,8 @@ jobs:
          run: |            
              cd XiaoxindadaSGSIs
              sudo chmod -R 777 output ; cd output
-             sudo chmod -R 777 system.img
              gzip -cfStv9 *img > $REPACK_NAME.img.gz
-             sudo rm -rf system.img
+             sudo rm -rf *.img
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
