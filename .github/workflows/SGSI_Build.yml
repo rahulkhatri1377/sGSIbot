@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://drive.google.com/uc?id=1yFGzwsAmpmWkbrjbvsqUD_8ticjzUC51&export=download'
-  REPACK_NAME : DotOS-6-RK137SGSI
+  ROM_URL: 'https://liquidtelecom.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-S-Alpha-Society-v6.0-RMX1921-Iron-20211121-1814-GApps.zip'
+  REPACK_NAME : Anc-RK137SGSI
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
          run: |            
              cd XiaoxindadaSGSIs
              sudo chmod -R 777 output ; cd output
-             gzip -cfStv9 *img > $REPACK_NAME.img.gz
+             gzip -fStv9 *img ; ls
              sudo rm -rf *.img
 
        - name: Upload SGSI to SourceForge
