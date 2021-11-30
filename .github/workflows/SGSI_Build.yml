@@ -35,13 +35,13 @@ jobs:
          run: |            
              cd XiaoxindadaSGSIs
              sudo chmod -R 777 output ; cd output
-             gzip -ftv9 *img ; ls
+             gzip -ftv9S *img ; ls
              sudo rm -rf *.img
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd XiaoxindadaSGSIsh/output
+             cd XiaoxindadaSGSIs/output
              ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
