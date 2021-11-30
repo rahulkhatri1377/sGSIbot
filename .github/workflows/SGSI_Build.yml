@@ -22,7 +22,7 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 XiaoxindadaSGSIs
+             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b test XiaoxindadaSGSIs
              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
@@ -35,13 +35,13 @@ jobs:
          run: |            
              cd XiaoxindadaSGSIs
              sudo chmod -R 777 output ; cd output
-             gzip -fStv9 *img ; ls
+             gzip -ftv9 *img ; ls
              sudo rm -rf *.img
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/output
+             cd XiaoxindadaSGSIsh/output
              ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
