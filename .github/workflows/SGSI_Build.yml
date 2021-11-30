@@ -29,13 +29,13 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:DotOS-6
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Anc
 
        - name: Repack output file ...
          run: |            
              cd XiaoxindadaSGSIs
-             sudo chmod -R 777 output ; cd output
-             gzip -ftv9S *img ; ls
+             sudo chmod -R 777 output ; cd output ; ls
+             gzip -ftq9 *img ; ls
              sudo rm -rf *.img
 
        - name: Upload SGSI to SourceForge
