@@ -35,7 +35,7 @@ jobs:
          run: |            
              cd XiaoxindadaSGSIs
              sudo chmod -R 777 output ; cd output ; ls
-             gzip -ftq9 *img ; ls
+             gzip -qf9 *img ; ls
              sudo rm -rf *.img
 
        - name: Upload SGSI to SourceForge
