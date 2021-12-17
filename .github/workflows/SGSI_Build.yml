@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://liquidtelecom.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-S-Alpha-Society-v6.0-RMX1921-Iron-20211121-1814-GApps.zip'
-  REPACK_NAME : Anc-RK137SGSI
+  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://DerpFest-12-Official-Shion-RMX1921-20211209.zip'
+  REPACK_NAME : Derp-t-RK137SGSI
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 XiaoxindadaSGSIs
+             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b test XiaoxindadaSGSIs
              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
