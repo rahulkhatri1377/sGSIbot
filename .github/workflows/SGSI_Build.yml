@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://redfin-s2b1.211112.006-factory-54144b89/redfin-s2b1.211112.006/image-redfin-s2b1.211112.006.zip'
-  REPACK_NAME : A12L-t-RK137SGSI
+  ROM_URL: 'https://bigota.d.miui.com/V12.5.9.0.RKFMIXM/miui_SWEETGlobal_V12.5.9.0.RKFMIXM_9a9a09a8de_11.0.zip'
+  REPACK_NAME : MIUI-t-RK137SGSI
 
 jobs:
   build:
@@ -22,14 +22,14 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b L XiaoxindadaSGSIs
+             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b main11 XiaoxindadaSGSIs
              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:A12L-t
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL MIUI
 
        - name: Repack output file ...
          run: |            
