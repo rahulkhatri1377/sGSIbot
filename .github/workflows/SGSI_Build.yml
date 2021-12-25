@@ -22,9 +22,9 @@ jobs:
 
        - name: Cloning...
          run: |
-             git clone https://github.com/rahulkhatri137/SGSI-build-tool.git -b main11 XiaoxindadaSGSIs
+             git clone --recurse-submodules https://github.com/rahulkhatri137/SGSI-build-tool.git -b main11 XiaoxindadaSGSIs
              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
-             sudo bash XiaoxindadaSGSIs/setup.sh
+             sudo bash XiaoxindadaSGSIs/setup.sh ; ls XiaoxindadaSGSIs/make/apex_vndk_start
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
