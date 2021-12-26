@@ -1,65 +1,19 @@
-name: SGSI_Build
-
+name: Ubuntu_Server
 on: 
-    push:
-    workflow_dispatch:
-    
-env:              
-  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Corvus_v17.0-Vanguard-sanders-31102021-Official-1609.zip'
-  REPACK_NAME : MIUI-t-RK137SGSI
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  build:
+  Server:
     runs-on: ubuntu-latest
-
     steps:
-       - name: Checkout
-         uses: actions/checkout@main
-           
-       - name: Setting up the SPICES
-         run: |
-            sudo apt-get install -y git unzip curl aria2 expect
-
-       - name: Cloning...
-         timeout-minutes: 15
-         run: |
-             git clone --recurse-submodules ${{ secrets.REPO }} -b main11 XiaoxindadaSGSIs
-             sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
-             sudo bash XiaoxindadaSGSIs/setup.sh ; ls XiaoxindadaSGSIs/make/apex_vndk_start
-             sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
-               
-       - name: Building AB DEVICES SGSI...
-         run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Havoc
-
-       - name: Repack output file ...
-         run: |            
-             cd XiaoxindadaSGSIs
-             sudo chmod -R 777 output ; cd output ; ls
-             gzip -qf9 *img ; ls
-             sudo rm -rf *.img
-
-       - name: Upload SGSI to SourceForge
-         continue-on-error: true
-         run: |
-             cd XiaoxindadaSGSIs/output
-             ls
-             expect -c "
-             spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
-             expect \"yes/no\"
-             send \"yes\r\"
-             expect \"Password\"        
-             send \"${{ secrets.SFPASS }}\r\"
-             expect \"sftp> \"
-             send \"cd ${{ secrets.SFDIR }}\r\"
-             set timeout -1
-             send \"mkdir $REPACK_NAME\r\"
-             expect \"sftp> \"
-             send \"cd $REPACK_NAME\r\"
-             set timeout -1
-             send \"put *\r\"
-             expect \"Uploading\"
-             expect \"100%\"
-             expect \"sftp>\"
-             send \"bye\r\"
-             interact"
+    - uses: fastai/workflows/ssh@master
+      with:
+        ssh_key: ${{ secrets.SSH_KEY }}
+        key_file: id_ecdsa
+    - uses: actions/checkout@v2
+    - run: git clone --recurse-submodules ${{ $secrets.REPO }} -b mmm x
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@master
