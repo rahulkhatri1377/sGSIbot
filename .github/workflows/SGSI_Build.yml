@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Corvus_v17.0-Vanguard-sanders-31102021-Official-1609.zip'
-  REPACK_NAME : MIUI-t-RK137SGSI
+  ROM_URL: 'https://repo.mirrorbot69.workers.dev/0:/Cherish-OS-v3.2-20211219-1308-RMX1921-OFFICIAL-Gapps.zip'
+  REPACK_NAME : Cherish-t-RK137SGSI
 
 jobs:
   build:
@@ -23,14 +23,14 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPO }} -b op XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPO }} -b main XiaoxindadaSGSIs
              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
              sudo bash XiaoxindadaSGSIs/setup.sh ; ls XiaoxindadaSGSIs/make/apex_vndk_start
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Havoc
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Cherish
 
        - name: Repack output file ...
          run: |            
