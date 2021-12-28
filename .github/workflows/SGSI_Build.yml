@@ -5,7 +5,7 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://repo.mirrorbot69.workers.dev/0:/Cherish-OS-v3.2-20211219-1308-RMX1921-OFFICIAL-Gapps.zip'
+  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Cherish-OS-v3.2-20211219-1506-r5x-OFFICIAL-Gapps.zip'
   REPACK_NAME : Cherish-t-RK137SGSI
 
 jobs:
