@@ -5,7 +5,7 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://repo.mirrorbot69.workers.dev/0:/Cherish-OS-v3.2-20211219-1308-RMX1921-OFFICIAL-Gapps.zip'
+  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Cherish-OS-v3.2-20211219-1506-r5x-OFFICIAL-Gapps.zip'
   REPACK_NAME : Cherish-t-RK137SGSI
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
          run: |
              git clone --recurse-submodules ${{ secrets.REPO }} -b main XiaoxindadaSGSIs
              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
-             sudo bash XiaoxindadaSGSIs/setup.sh ; ls XiaoxindadaSGSIs/make/apex_vndk_start
+             sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
