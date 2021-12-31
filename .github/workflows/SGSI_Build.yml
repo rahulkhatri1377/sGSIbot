@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Cherish-OS-v3.2-20211219-1506-r5x-OFFICIAL-Gapps.zip'
-  REPACK_NAME : Cherish-t-RK137SGSI
+  ROM_URL: 'https://versaweb.dl.sourceforge.net/project/realmeme5roms/CorvusOS/Corvus_v17.0-Vanguard-r5x-30122021-Unofficial-2051.zip-ENFORCING-STABLE.zip'
+  REPACK_NAME : Corvus-t-RK137SGSI
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPO }} -b main XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPO }} -b main11 XiaoxindadaSGSIs
              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
