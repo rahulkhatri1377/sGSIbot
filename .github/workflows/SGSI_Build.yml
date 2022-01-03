@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://versaweb.dl.sourceforge.net/project/realmeme5roms/CorvusOS/Corvus_v17.0-Vanguard-r5x-30122021-Unofficial-2051.zip-ENFORCING-STABLE.zip'
-  REPACK_NAME : Corvus-t-RK137SGSI
+  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Havoc-OS-v4.11-20211121-RMX1805-Official.zip'
+  REPACK_NAME : Havoc
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Corvus -11
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Havoc -11
 
        - name: Repack output file ...
          run: |            
