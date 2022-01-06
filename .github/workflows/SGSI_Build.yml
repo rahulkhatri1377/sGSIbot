@@ -23,13 +23,13 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPO }} -b last XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b main11 XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; bash url2SGSI.sh $ROM_URL Generic:Corvus -11
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Corvus
 
        - name: Repack output file ...
          run: |            
