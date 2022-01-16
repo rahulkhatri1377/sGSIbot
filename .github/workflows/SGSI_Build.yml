@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Corvus_v17.0-Vanguard-sanders-31102021-Official-1609.zip'
-  REPACK_NAME : Corvus-t
+  ROM_URL: 'https://bigota.d.miui.com/V13.0.12.1.1.DEV/miui_ZEUS_V13.0.12.1.1.DEV_5b2393e286_12.0.zip'
+  REPACK_NAME : MIUI13
 
 jobs:
   build:
@@ -23,13 +23,13 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b main11 XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b main XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Corvus
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL MIUI:MIUI13
 
        - name: Repack output file ...
          run: |            
