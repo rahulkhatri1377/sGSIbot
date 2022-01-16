@@ -5,11 +5,11 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://netix.dl.sourceforge.net/project/ancientrom/RMX1921/AncientOS-S-Alpha-Society-v6.0-RMX1921-Iron-20211027-1257-GApps.zip'
+  ROM_URL: 'https://bigota.d.miui.com/V13.0.12.1.1.DEV/miui_ZEUS_V13.0.12.1.1.DEV_5b2393e286_12.0.zip'
   ZIP_NAME: 'update.zip'
-  OS_TYPE: 'Pixel'
+  OS_TYPE: 'Generic'
   BUILD_TYPE: 'ab'
-  REPACK_NAME: 'Ancient-6-S-P-RK137SGSI'
+  REPACK_NAME: 'MIUI13'
   VERSION: '12'
   upload _SourceForge: 'true'
   upload_WeTransfer: 'false'
