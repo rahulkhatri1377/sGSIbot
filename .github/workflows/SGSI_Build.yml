@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://tutorial.dipeshtech.workers.dev/0:/Spark-S-Energized-UNOFFICIAL-RMX1921-20220117-gapps.zip'
-  REPACK_NAME : MIUI13
+  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Streak-12.0-UNOFFICIAL-GAPPS-r5x-20220116-0850.zip'
+  REPACK_NAME : Streak1
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Spark
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Streak
 
        - name: Repack output file ...
          run: |            
