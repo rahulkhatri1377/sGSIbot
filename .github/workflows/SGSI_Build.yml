@@ -6,7 +6,7 @@ on:
     
 env:              
   ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://Streak-12.0-UNOFFICIAL-GAPPS-r5x-20220116-0850.zip'
-  REPACK_NAME : Streak1
+  REPACK_NAME : Streak2
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b main XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b old XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
