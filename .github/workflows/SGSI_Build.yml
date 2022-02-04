@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://miui_PSYCHE_V13.0.10.0.RLDCNXM_ef8a0733f5_11.0.zip'
-  REPACK_NAME : Miui13
+  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/crDroidAndroid-11.0-20220131-mido-v7.14.zip'
+  REPACK_NAME : CrDr
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL MIUI:MIUI13
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic: CrDr
 
        - name: Repack output file ...
          run: |            
