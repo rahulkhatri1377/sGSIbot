@@ -6,7 +6,7 @@ on:
     
 env:              
   ROM_URL: 'https://download.havoc-os.com/r5x/Havoc-OS-v4.13-20220130-r5x-Official.zip'
-  REPACK_NAME : Havoc1
+  REPACK_NAME : Havoc
 
 jobs:
   build:
@@ -29,13 +29,13 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b 11n XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b 11 XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Havoc1
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Havoc
 
        - name: Repack output file ...
          run: |            
