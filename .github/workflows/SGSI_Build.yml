@@ -29,7 +29,7 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b 11 XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b maino XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
