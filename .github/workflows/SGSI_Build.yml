@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://download.havoc-os.com/r5x/Havoc-OS-v4.13-20220130-r5x-Official.zip'
-  REPACK_NAME : Havoc
+  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://redfin-sq1a.220205.002-factory-734556ab/redfin-sq1a.220205.002/image-redfin-sq1a.220205.002.zip'
+  REPACK_NAME : Pixel
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Havoc
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Pixel:Pixel5
 
        - name: Repack output file ...
          run: |            
