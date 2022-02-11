@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://rehans.harshtutorialdrive.workers.dev/0://redfin-sq1a.220205.002-factory-734556ab/redfin-sq1a.220205.002/image-redfin-sq1a.220205.002.zip'
-  REPACK_NAME : Pixel
+  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/redfin-tpp1.220114.016-factory-b02592b5/redfin-tpp1.220114.016/image-redfin-tpp1.220114.016.zip'
+  REPACK_NAME : PixelT
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Pixel:Pixel5
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Pixel:Pixel5T
 
        - name: Repack output file ...
          run: |            
