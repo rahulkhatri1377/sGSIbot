@@ -5,10 +5,10 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://mirror.dipeshmirror.workers.dev/0:/RMX2170PU_11_OTA_c28.zip'
-  TYPE: ColorOS
-  NAME: RealmeUI
-  REPACK_NAME : RealmeUI
+  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/miui_PSYCHE_V13.0.10.0.RLDCNXM_ef8a0733f5_11.0.zip'
+  TYPE: MIUI
+  NAME: MIUI13-CN
+  REPACK_NAME : 'MIUI13-CN - 11 - PSYCHE'
 
 jobs:
   build:
