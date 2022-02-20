@@ -5,10 +5,10 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/Vos4%20for%20live.zip'
-  TYPE: VOS
-  NAME: VOS-4
-  REPACK_NAME : 'VOS4 - 11'
+  ROM_URL: 'https://versaweb.dl.sourceforge.net/project/gsis137/SGSI/MIUI-22.1.19/MIUI13-22-test.img.xz'
+  TYPE: MIUI
+  NAME: MIUI-22.1.19
+  REPACK_NAME : 'MIUI-22.1.19 - 11'
 
 jobs:
   build:
@@ -20,36 +20,11 @@ jobs:
            
        - name: Setting up the SPICES
          run: |
-            docker rmi `docker images -q`
-            sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-            sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* php*
-            sudo -E apt-get update
-            sudo -E apt-get -y autoremove --purge
-            sudo -E apt-get clean
             sudo apt-get install -y git unzip curl aria2 expect ; sudo -E apt-get update
-
-       - name: Cloning...
-         timeout-minutes: 15
-         run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b main11 XiaoxindadaSGSIs
-             sudo bash XiaoxindadaSGSIs/setup.sh
-             sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
-               
-       - name: Building AB DEVICES SGSI...
-         run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL $TYPE:$NAME
-
-       - name: Repack output file ...
-         run: |            
-             cd XiaoxindadaSGSIs
-             sudo chmod -R 777 output ; cd output ; ls
-             gzip -qf9 *img ; ls
-             sudo rm -rf *.img ; cat README.txt
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd XiaoxindadaSGSIs/output
              ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
@@ -66,7 +41,7 @@ jobs:
              expect \"sftp> \"
              send \"cd $REPACK_NAME\r\"
              set timeout -1
-             send \"put *\r\"
+             send \"put *xz\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
