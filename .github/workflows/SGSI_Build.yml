@@ -25,7 +25,7 @@ jobs:
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             ls
+             aria2c $ROM_URL ; ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
              expect \"yes/no\"
