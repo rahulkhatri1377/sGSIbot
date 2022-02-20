@@ -5,10 +5,9 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://versaweb.dl.sourceforge.net/project/gsis137/SGSI/MIUI-22.1.19/MIUI13-22-test.img.xz'
+  ROM_URL: 'https://master.dl.sourceforge.net/project/gsis137/SGSI/MIUI-22.2.17/MIUI13-22.2.17-full-AB-11-20220220-tucana-SGSI137.img.xz?viasf=1'
   TYPE: MIUI
-  NAME: MIUI-22.1.19
-  REPACK_NAME : 'MIUI-22.1.19 - 11'
+  REPACK_NAME : 'MIUI13-22.2.17'
 
 jobs:
   build:
@@ -20,7 +19,7 @@ jobs:
            
        - name: Setting up the SPICES
          run: |
-            sudo apt-get install -y git unzip curl aria2 expect ; sudo -E apt-get update
+            sudo apt-get install -y aria2 expect
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
@@ -37,8 +36,6 @@ jobs:
              set timeout -1
              send \"cd $TYPE\r\"
              set timeout -1
-             send \"mkdir $REPACK_NAME\r\"
-             expect \"sftp> \"
              send \"cd $REPACK_NAME\r\"
              set timeout -1
              send \"put *xz\r\"
