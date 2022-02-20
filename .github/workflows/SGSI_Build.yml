@@ -5,10 +5,10 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/Vos4%20for%20live.zip'
-  TYPE: VOS
-  NAME: VOS-4
-  REPACK_NAME : 'VOS4 - 11'
+  ROM_URL: 'https://broken-sunset-4971.rehanalt501.workers.dev/0://xiaomi.eu_multi_MINote10_MICC9Pro_22.2.17_v13-11.zip'
+  TYPE: MIUI
+  NAME: MIUI13-22.2.17
+  REPACK_NAME : 'MIUI13-22.2.17'
 
 jobs:
   build:
