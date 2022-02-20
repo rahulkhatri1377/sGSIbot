@@ -5,10 +5,10 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://broken-sunset-4971.rehanalt501.workers.dev/0://xiaomi.eu_multi_MINote10_MICC9Pro_22.2.17_v13-11.zip'
-  TYPE: MIUI
-  NAME: MIUI13-22.2.17
-  REPACK_NAME : 'MIUI13-22.2.17'
+  ROM_URL: 'https://broken-sunset-4971.rehanalt501.workers.dev/0://NX669J-update.zip'
+  TYPE: Nubia
+  NAME: RedMagicOS-4.5
+  REPACK_NAME : 'RedMagicOS-4.5'
 
 jobs:
   build:
