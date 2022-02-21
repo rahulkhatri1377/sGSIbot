@@ -38,7 +38,7 @@ jobs:
              set timeout -1
              send \"cd $REPACK_NAME\r\"
              set timeout -1
-             send \"put *xz\r\"
+             send \"put *z\r\"
              expect \"Uploading\"
              expect \"100%\"
              expect \"sftp>\"
