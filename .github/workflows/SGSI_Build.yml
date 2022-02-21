@@ -5,9 +5,9 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://master.dl.sourceforge.net/project/gsis137/SGSI/MIUI-22.2.17/MIUI13-22.2.17-full-AB-11-20220220-tucana-SGSI137.img.xz?viasf=1'
-  TYPE: MIUI
-  REPACK_NAME : 'MIUI13-22.2.17'
+  ROM_URL: 'https://altushost-swe.dl.sourceforge.net/project/sgsi137/Nubia/RedMagicOS-4.5%20-%2011%20-%20NX669J/RedMagicOS-4.5-full-AB-11-20220220-NX669J-SGSI137.img.gz'
+  TYPE: Nubia
+  REPACK_NAME : 'RedMagicOS-4.5'
 
 jobs:
   build:
@@ -19,12 +19,12 @@ jobs:
            
        - name: Setting up the SPICES
          run: |
-            sudo apt-get install -y aria2 expect
+            sudo apt-get install -y aria2 expect ; aria2c $ROM_URL
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             aria2c $ROM_URL ; ls
+             ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
              expect \"yes/no\"
