@@ -20,9 +20,6 @@ jobs:
            
        - name: Setting up the SPICES
          run: |
-            docker rmi `docker images -q`
-            sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-            sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* php*
             sudo -E apt-get update
             sudo -E apt-get -y autoremove --purge
             sudo -E apt-get clean
@@ -37,19 +34,17 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL $TYPE:$NAME
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; mkdir tmp ; mkdir -p workspace/out ; mkdir -p workspace/config ; cd tmp ; aria2c $ROM_URL ; cd .. ; sudo bash make.sh ./tmp/*.zip
 
        - name: Repack output file ...
          run: |            
-             cd XiaoxindadaSGSIs
-             sudo chmod -R 777 output ; cd output ; ls
-             gzip -qf9 *img ; ls
-             sudo rm -rf *.img ; cat README.txt
+             cd XiaoxindadaSGSIs/workspace/out
+             cat system/system/build.prop ; cat vendor/build.prop ; cat system/system/product/etc/build.prop
 
        - name: Upload SGSI to SourceForge
          continue-on-error: true
          run: |
-             cd XiaoxindadaSGSIs/output
+             cd XiaoxindadaSGSIs/output/fianle
              ls
              expect -c "
              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
