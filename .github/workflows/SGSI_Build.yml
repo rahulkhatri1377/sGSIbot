@@ -5,10 +5,10 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://asia-sysupwsdl.vivoglobal.com/upgrade/official/officialFiles/PD2034F_EX_A_1.9.4-update-full_1628239312.zip'
-  TYPE: FuntouchOS
-  NAME: FuntouchOS
-  REPACK_NAME : 'FuntouchOS'
+  ROM_URL: 'https://broken-sunset-4971.rehanalt501.workers.dev/0://redfin-s2b3.220205.007.a1-factory-b17b4c36/redfin-s2b3.220205.007.a1/image-redfin-s2b3.220205.007.a1.zip'
+  TYPE: Pixel
+  NAME: Pixel-5-B3
+  REPACK_NAME : 'Pixel-5-12L-B3'
 
 jobs:
   build:
