@@ -34,7 +34,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; mkdir tmp ; mkdir -p workspace/out ; mkdir -p workspace/config ; cd tmp ; aria2c $ROM_URL ; cd .. ; sudo bash make.sh ./tmp/*.zip
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; mkdir tmp ; mkdir -p workspace/out ; mkdir -p workspace/config ; cd tmp ; aria2c $ROM_URL ; cd .. ; sudo bash make.sh AB Generic ./tmp/*.zip
 
        - name: Repack output file ...
          run: |            
