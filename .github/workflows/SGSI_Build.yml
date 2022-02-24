@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/redfin-tpp1.220114.016-factory-b02592b5/redfin-tpp1.220114.016/image-redfin-tpp1.220114.016.zip'
-  REPACK_NAME : PixelT
+  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/PixelUI_Ginkgo-13.0-20220218-0100.zip'
+  REPACK_NAME : Tiramisu
 
 jobs:
   build:
@@ -29,13 +29,13 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b maino XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b 13 XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Pixel:Pixel5T
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Pixel:Tiramisu
 
        - name: Repack output file ...
          run: |            
