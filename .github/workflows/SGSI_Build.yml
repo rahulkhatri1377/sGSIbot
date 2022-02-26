@@ -5,10 +5,10 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://broken-sunset-4971.rehanalt501.workers.dev/0://redfin-s2b3.220205.007.a1-factory-b17b4c36/redfin-s2b3.220205.007.a1/image-redfin-s2b3.220205.007.a1.zip'
-  TYPE: Pixel
-  NAME: Pixel-5-B3
-  REPACK_NAME : 'Pixel-5-12L-B3'
+  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/AospExtended-v9.0-whyred-OFFICIAL-20220216-1317.zip'
+  TYPE: Generic
+  NAME: AEX-9
+  REPACK_NAME : 'AEX-9 - 12 - whyred'
 
 jobs:
   build:
