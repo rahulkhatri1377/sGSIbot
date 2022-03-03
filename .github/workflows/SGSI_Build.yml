@@ -5,10 +5,10 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/AospExtended-v9.0-whyred-OFFICIAL-20220216-1317.zip'
-  TYPE: Generic
-  NAME: AEX-9
-  REPACK_NAME : 'AEX-9 - 12 - whyred'
+  ROM_URL: 'https://mirror.dipeshmirror.workers.dev/0:/ZTE_Libero_5G_A003ZT%20Z6650S_403210_B18451.0.0_U_220221_QPST_%28by_ztefirmware.com%29.zip'
+  TYPE: MyOS
+  NAME: MyOS
+  REPACK_NAME : 'MyOS'
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b main XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b main11 XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
