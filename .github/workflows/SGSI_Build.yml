@@ -6,7 +6,7 @@ on:
     
 env:              
   ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/Spark-12.1-UNOFFICIAL-r5x-20220305.zip'
-  REPACK_NAME : Spark-r5x
+  REPACK_NAME : SparkOS-r5x
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b main12 XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b sta XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
