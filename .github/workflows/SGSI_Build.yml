@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/PixelUI_Ginkgo-13.0-20220218-0100.zip'
-  REPACK_NAME : Tiramisu
+  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/AncientOS-S-Shield-v6.2-santoni-Silver-20220225-1110-Vanilla.zip'
+  REPACK_NAME : Ancient-santoni
 
 jobs:
   build:
@@ -29,13 +29,13 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b 13 XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b main12 XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Pixel:Tiramisu
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Anc
 
        - name: Repack output file ...
          run: |            
