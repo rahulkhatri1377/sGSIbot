@@ -5,9 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/AncientOS-S-Shield-v6.2-santoni-Silver-20220225-1110-Vanilla.zip'
-  REPACK_NAME : Ancient-santoni
-
+  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/Spark-12.1-UNOFFICIAL-r5x-20220305.zip'
+  REPACK_NAME : Spark-r5x
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +34,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Anc
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Spark
 
        - name: Repack output file ...
          run: |            
