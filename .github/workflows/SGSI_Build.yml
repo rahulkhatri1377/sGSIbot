@@ -16,4 +16,4 @@ jobs:
         key_file: id_ecdsa
     - uses: actions/checkout@v2
     - name: Setup Server
-      uses: mxschmitt/action-tmate@master
+      uses: mxschmitt/action-tmate@v3
