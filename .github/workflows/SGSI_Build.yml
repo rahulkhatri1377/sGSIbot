@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://dipeshmirror.dipeshtech.workers.dev/0:/Spark-12.1-UNOFFICIAL-r5x-20220305.zip'
-  REPACK_NAME : SparkOS-r5x
+  ROM_URL: 'https://netix.dl.sourceforge.net/project/ancientrom/davinci/AncientOS-S-Shield-v6.2-davinci-Steel-20220212-1930-GApps.zip'
+  REPACK_NAME : Ancient-davinci
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,13 +28,13 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b sta XiaoxindadaSGSIs
+             git clone --recurse-submodules ${{ secrets.REPOO }} -b main XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Spark
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Generic:Ancient-6.2
 
        - name: Repack output file ...
          run: |            
