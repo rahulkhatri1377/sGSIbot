@@ -67,28 +67,11 @@ jobs:
              ls
              sudo chmod -R 777 system.img
              gzip -cfStv9 *img > $REPACK_NAME.img.gz
-
-      - name: Upload SGSI to SourceForge
-        continue-on-error: true
-        run: |
-             cd $GITHUB_WORKSPACE/SGSI-build-tool/SGSI
-             ls
-             expect -c "
-             spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
-             expect \"yes/no\"
-             send \"yes\r\"
-             expect \"Password\"        
-             send \"${{ secrets.SFPASS }}\r\"
-             expect \"sftp> \"
-             send \"cd ${{ secrets.SFDIR }}\r\"
-             set timeout -1
-             send \"mkdir $REPACK_NAME\r\"
-             expect \"sftp> \"
-             send \"cd $REPACK_NAME\r\"
-             set timeout -1
-             send \"put *\r\"
-             expect \"Uploading\"
-             expect \"100%\"
-             expect \"sftp>\"
-             send \"bye\r\"
-             interact"
+      - name: Upload SGSI to GH-Release
+        uses: ncipollo/release-action@v1.8.6
+        with:
+          artifacts: ${{ github.workspace }}/SGSI-build-tool/upload/*
+          name: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-Android${{ steps.config.outputs.version }}-unpack"
+          tag: "${{ steps.config.outputs.os_type }}${{ steps.config.outputs.build_type }}-${{ steps.config.outputs.version }}-${{ github.run_number }}"
+          bodyFile: "${{ github.workspace}}/SGSI-build-tool/SGSI/build_info.txt"
+          token: ${{ secrets.GITHUB_TOKEN }}
