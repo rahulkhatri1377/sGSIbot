@@ -22,7 +22,7 @@ jobs:
         run: |
           sudo -E apt-get clean
           sudo apt-get install -y git unzip curl expect
-          df -h
+          sudo apt update
 
       - name: Get the SGSI tool‌‌...
         run: |
