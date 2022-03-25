@@ -21,7 +21,7 @@ jobs:
       - name: Clean up the environment‌‌...
         run: |
           sudo -E apt-get clean
-          sudo apt install -y unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract rename liblzma-dev python-pip brotli lz4
+          sudo apt install -y unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract rename liblzma-dev brotli lz4
           sudo apt update
 
       - name: Get the SGSI tool‌‌...
