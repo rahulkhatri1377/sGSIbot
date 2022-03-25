@@ -30,7 +30,7 @@ jobs:
 
       - name: Configuration tool environment...
         run: |
-          pip install backports.lzma protobuf pycrypto
+          pip install backports.lzma protobuf pycrypto zstandard
 
       - name: Make AB type GSI‌‌...
         run: |
