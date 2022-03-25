@@ -21,31 +21,21 @@ jobs:
       - name: Clean up the environment‌‌...
         run: |
           sudo -E apt-get clean
-          sudo apt-get install -y git unzip curl expect
+          sudo apt install -y unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract rename liblzma-dev python-pip brotli lz4
           sudo apt update
 
       - name: Get the SGSI tool‌‌...
         run: |
-          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/SGSI-build-tool
-          
-      - name: Download Firmware...
-        run: |
-          cd $GITHUB_WORKSPACE/SGSI-build-tool
-          mkdir ./tmp
-          aria2c -x16 -j$(nproc) -U "Mozilla/5.0" -d "$GITHUB_WORKSPACE/SGSI-build-tool/tmp" $ROM_URL
+          git clone --recurse-submodules https://github.com/erfanoabdi/Firmware_extractor fe
 
       - name: Configuration tool environment...
         run: |
-          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
-          sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
-          sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
-          pip3 install zstandard
+          pip install backports.lzma protobuf pycrypto
 
       - name: Make AB type GSI‌‌...
         run: |
-          cd $GITHUB_WORKSPACE/SGSI-build-tool ; mkdir -p tmp/out
-          sudo bash unpack_kdz.sh tmp/G*kdz out/
-          ls tmp ; tmp/out
+          cd fe ; aria2c -x16 -j$(nproc) -U "Mozilla/5.0" $ROM_URL
+          sudo bash extractor.sh G*.kdz ; ls
 
       - name: Repack output file ...
         run: |            
