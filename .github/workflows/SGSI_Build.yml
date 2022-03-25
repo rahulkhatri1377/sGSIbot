@@ -5,7 +5,7 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://reflection.dipeshmirror.workers.dev/0:/miui_LIME_22.3.2_1fc1f2314c_11.0.zip'
+  ROM_URL: 'https://reflection.dipeshmirror.workers.dev/0:/miui_VEUX_V13.0.2.0.RKCCNXM_5cec31d5e5_11.0.zip'
   REPACK_NAME : miui
 jobs:
   build:
