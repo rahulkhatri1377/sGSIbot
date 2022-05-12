@@ -29,7 +29,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; bash url2SGSI.sh $ROM_URL Pixel:PixelTB2
+            sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL Pixel:PixelTB2
 
        - name: Repack output file ...
          run: |            
