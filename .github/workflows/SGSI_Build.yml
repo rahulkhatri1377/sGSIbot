@@ -29,7 +29,7 @@ jobs:
                
        - name: Building AB DEVICES SGSI...
          run: |
-            mkdir -p tmp ; cd tmp ; aria2c $ROM_URL ; unzip *zip ; rm -rf *zip ; cd r* ; mv image*.zip update.zip ; mv update.zip ./../ ; cd .. ; ls ; rm -rf r*
+            mkdir -p tmp ; cd tmp ; aria2c $ROM_URL ; unzip *zip ; rm -rf *zip ; cd r* ; mv image*.zip update.zip ; mv update.zip ./../ ; cd .. ; ls ; rm -rf r* ; cd ..
             sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; bash url2SGSI.sh tmp/update.zip Generic:Corvus -11
 
        - name: Repack output file ...
