@@ -28,17 +28,18 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules https://github.com/rahulkhatri137/SGSIs -b main11 XiaoxindadaSGSIs
+             git clone --recurse-submodules https://github.com/rahulkhatri137/SGSIs -b log XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
        - name: Building AB DEVICES SGSI...
+         continue-on-error: true
          run: |
             sudo chmod -R 777 XiaoxindadaSGSIs; cd XiaoxindadaSGSIs ; sudo bash url2SGSI.sh $ROM_URL MIUI:MIUI-sweet
 
        - name: Repack output file ...
-         run: |            
-             cd XiaoxindadaSGSIs
+         run: |         
+             cd XiaoxindadaSGSIs ; cat workspace/out/config/system_file_contexts
              sudo chmod -R 777 output ; cd output ; ls
              gzip -qf9 *img ; ls
              sudo rm -rf *.img
