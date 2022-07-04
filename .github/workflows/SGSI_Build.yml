@@ -5,8 +5,8 @@ on:
     workflow_dispatch:
     
 env:              
-  ROM_URL: 'https://bigota.d.miui.com/V13.0.3.0.SKFEUXM/miui_SWEETEEAGlobal_V13.0.3.0.SKFEUXM_73299ee316_12.0.zip'
-  REPACK_NAME : MIUI-sweet
+  ROM_URL: 'https://beware-the.devilreturns.workers.dev/1:/miui_VEUXGlobal_V13.0.14.0.RKCMIXM_cb9ffa7184_11.0.zip'
+  REPACK_NAME : MIUI-testo
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
        - name: Cloning...
          timeout-minutes: 15
          run: |
-             git clone --recurse-submodules ${{ secrets.REPOO }} -b main XiaoxindadaSGSIs
+             git clone --recurse-submodules https://github.com/rahulkhatri137/SGSIs -b main11 XiaoxindadaSGSIs
              sudo bash XiaoxindadaSGSIs/setup.sh
              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"       
                
